@@ -277,6 +277,7 @@ struct SettingsView: View {
         case .gestures: GesturesSettingsView()
         case .keybinds: KeybindsSettingsView()
         case .cmdTab: CmdTabSettingsView()
+        case .customDocks: CustomDocksSettingsView()
         case .appearance: AppearanceSettingsView()
         case .filters: FiltersSettingsView()
         case .widgets: WidgetSettingsView()

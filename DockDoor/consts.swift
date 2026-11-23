@@ -302,6 +302,10 @@ extension Defaults.Keys {
     static let activeAppIndicatorStyle = Key<ActiveAppIndicatorStyle>("activeAppIndicatorStyle", default: .bar)
     static let activeAppIndicatorHighlightFrontmost = Key<Bool>("activeAppIndicatorHighlightFrontmost", default: true)
 
+    // MARK: - Custom Docks
+
+    static let customDocks = Key<[CustomDockConfig]>("customDocks", default: [])
+
     // MARK: - Trackpad Gestures
 
     static let gestureSwipeThreshold = Key<CGFloat>("gestureSwipeThreshold", default: 50)

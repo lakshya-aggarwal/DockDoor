@@ -3,7 +3,7 @@ import Foundation
 enum SettingsSearchCatalog {
     static let items: [SettingsSearchItem] = generalItems + dockPreviewItems + windowSwitcherItems
         + gestureItems + cmdTabItems + dockLockingItems + appearanceItems + glassItems + keybindItems + filtersItems
-        + widgetItems + pinningItems + advancedItems + supportItems
+        + widgetItems + customDockItems + pinningItems + advancedItems + supportItems
 
     // MARK: - General
 
@@ -1615,6 +1615,52 @@ enum SettingsSearchCatalog {
             tab: "Filters",
             section: String(localized: "Widget App Filters"),
             icon: "square.grid.2x2"
+        ),
+    ]
+
+    // MARK: - Custom Docks
+
+    private static let customDockItems: [SettingsSearchItem] = [
+        SettingsSearchItem(
+            id: "customDocks.add",
+            title: String(localized: "Add Dock"),
+            description: String(localized: "Small floating docks that sit alongside the system Dock. Drag a dock to move it."),
+            keywords: ["custom", "dock", "group", "floating", "create", "new"],
+            tab: "CustomDocks",
+            section: String(localized: "Custom Docks"),
+            icon: "plus"
+        ),
+        SettingsSearchItem(
+            id: "customDocks.name",
+            title: String(localized: "Name"),
+            keywords: ["custom", "dock", "rename", "title"],
+            tab: "CustomDocks",
+            section: String(localized: "Custom Docks"),
+            icon: "textformat"
+        ),
+        SettingsSearchItem(
+            id: "customDocks.layout",
+            title: String(localized: "Layout"),
+            keywords: ["custom", "dock", "horizontal", "vertical", "orientation"],
+            tab: "CustomDocks",
+            section: String(localized: "Custom Docks"),
+            icon: "rectangle.split.3x1"
+        ),
+        SettingsSearchItem(
+            id: "customDocks.iconSize",
+            title: String(localized: "Icon Size"),
+            keywords: ["custom", "dock", "size", "icons", "scale"],
+            tab: "CustomDocks",
+            section: String(localized: "Custom Docks"),
+            icon: "arrow.up.left.and.arrow.down.right"
+        ),
+        SettingsSearchItem(
+            id: "customDocks.apps",
+            title: String(localized: "Add App…"),
+            keywords: ["custom", "dock", "app", "applications", "add", "drag"],
+            tab: "CustomDocks",
+            section: String(localized: "Custom Docks"),
+            icon: "app.badge"
         ),
     ]
 

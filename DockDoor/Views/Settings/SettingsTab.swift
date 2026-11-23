@@ -7,6 +7,7 @@ enum SettingsTab: String, CaseIterable, Identifiable {
     case cmdTab = "CmdTab"
     case gestures = "Gestures"
     case keybinds = "Keybinds"
+    case customDocks = "CustomDocks"
     case appearance = "Appearance"
     case filters = "Filters"
     case widgets = "Widgets"
@@ -43,6 +44,7 @@ enum SettingsTab: String, CaseIterable, Identifiable {
         case .gestures: String(localized: "Gestures", comment: "Settings tab title")
         case .keybinds: String(localized: "Keybinds", comment: "Settings tab title")
         case .cmdTab: String(localized: "Cmd+Tab", comment: "Settings tab title")
+        case .customDocks: String(localized: "Custom Docks", comment: "Settings tab title")
         case .appearance: String(localized: "Appearance", comment: "Settings Tab")
         case .filters: String(localized: "Filters", comment: "Filters tab title")
         case .widgets: String(localized: "Widgets", comment: "Widget settings tab title")
@@ -59,6 +61,7 @@ enum SettingsTab: String, CaseIterable, Identifiable {
         case .gestures: String(localized: "Trackpad, scroll and mouse actions", comment: "Settings tab subtitle")
         case .keybinds: String(localized: "Switcher shortcuts and keyboard actions on previews", comment: "Settings tab subtitle")
         case .cmdTab: String(localized: "An enhanced Cmd-Tab overlay", comment: "Settings tab subtitle")
+        case .customDocks: String(localized: "Small floating docks with the apps you choose", comment: "Settings tab subtitle")
         case .appearance: String(localized: "Backgrounds, sizes and titles", comment: "Settings tab subtitle")
         case .filters: String(localized: "Which apps and titles appear", comment: "Settings tab subtitle")
         case .widgets: String(localized: "Media, calendar and folder panels", comment: "Settings tab subtitle")
@@ -75,6 +78,7 @@ enum SettingsTab: String, CaseIterable, Identifiable {
         case .gestures: "hand.draw.fill"
         case .keybinds: "keyboard"
         case .cmdTab: "command"
+        case .customDocks: "rectangle.3.group"
         case .appearance: "wand.and.stars.inverse"
         case .filters: "air.purifier"
         case .widgets: "square.grid.2x2"
@@ -86,7 +90,7 @@ enum SettingsTab: String, CaseIterable, Identifiable {
     var section: Section? {
         switch self {
         case .general: nil
-        case .dockPreviews, .windowSwitcher, .cmdTab, .gestures, .keybinds: .features
+        case .dockPreviews, .windowSwitcher, .cmdTab, .gestures, .keybinds, .customDocks: .features
         case .appearance, .filters, .widgets: .customization
         case .advanced, .support: .system
         }

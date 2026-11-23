@@ -13,6 +13,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var windowGestureController: WindowGestureController?
     private var activeAppIndicator: ActiveAppIndicatorCoordinator?
     private var dockLocker: DockLocker?
+    private var customDockCoordinator: CustomDockCoordinator?
+    private var customDocksObservation: Defaults.Observation?
     private var statusBarItem: NSStatusItem?
     private let windowActionsMenu = WindowActionsMenuController()
     private var updaterController: SPUStandardUpdaterController
@@ -74,6 +76,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         MediaRemoteService.shared.activate()
         ScreenReservations.shared.start()
+
+        customDocksObservation = Defaults.observe(.customDocks) { [weak self] change in
+            DispatchQueue.main.async { self?.syncCustomDocks(change.newValue) }
+        }
 
         if !Defaults[.launched] {
             handleFirstTimeLaunch()
@@ -247,6 +253,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func openReviewPage() {
         NSWorkspace.shared.open(Links.review)
+    }
+
+    private func syncCustomDocks(_ docks: [CustomDockConfig]) {
+        if docks.isEmpty {
+            customDockCoordinator = nil
+            return
+        }
+        if customDockCoordinator == nil { customDockCoordinator = CustomDockCoordinator() }
+        customDockCoordinator?.apply(docks)
     }
 
     private var wakeRecoveryTask: Task<Void, Never>?

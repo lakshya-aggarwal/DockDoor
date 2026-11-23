@@ -71,6 +71,10 @@
 		80D3866B628F4782B1CA25ED /* SettingsBackupManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE5A44714CC42C180F33053 /* SettingsBackupManagerTests.swift */; };
 		81BFDF0D2EE815FD00D56F65 /* CompactModeWarningBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFDF0C2EE815FD00D56F65 /* CompactModeWarningBanner.swift */; };
 		83E26DB067D2426086683147 /* ActiveAppIndicatorSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D264F468F734971AE701690 /* ActiveAppIndicatorSettingsView.swift */; };
+		9D5F7135BD6A4192B96B17047384069B /* CustomDockConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1335AF6C3C4C9BA9BEF303476106C6 /* CustomDockConfig.swift */; };
+		61FA43342F18436CB82290AC7C849275 /* CustomDockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E14A1D9D4404B228FB5933C84C82695 /* CustomDockView.swift */; };
+		D991A3B3B0044E35A84CC83A91B66A80 /* CustomDockCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F981B5D58AB54882B31E5A979C93A545 /* CustomDockCoordinator.swift */; };
+		9EEAF6B71DAE404E97E2E5469F60FF45 /* CustomDocksSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21765C791EE485384A8419BB4ACC271 /* CustomDocksSettingsView.swift */; };
 		8895D7565ED747F8A435CF5E207647C7 /* WidgetHoverContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5D1784E68A4052A122B9019AA9C150 /* WidgetHoverContainer.swift */; };
 		8A65164BC27F4A60A6FA765B /* DockPreviewGesturesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55363085DBBF4BEEB6AB0DA1 /* DockPreviewGesturesSection.swift */; };
 		8CEC79C870424F568497244E /* LauncherShortcutResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD29B399A3A1419CB7571988 /* LauncherShortcutResolver.swift */; };
@@ -315,6 +319,10 @@
 		6FB6B5E6E45444D4BC4951A0 /* WindowGestureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowGestureController.swift; sourceTree = "<group>"; };
 		7A1C2E9B4D5F4A0B8C3D2E1F /* EventTapThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTapThread.swift; sourceTree = "<group>"; };
 		7D264F468F734971AE701690 /* ActiveAppIndicatorSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAppIndicatorSettingsView.swift; sourceTree = "<group>"; };
+		5C1335AF6C3C4C9BA9BEF303476106C6 /* CustomDockConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDockConfig.swift; sourceTree = "<group>"; };
+		2E14A1D9D4404B228FB5933C84C82695 /* CustomDockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDockView.swift; sourceTree = "<group>"; };
+		F981B5D58AB54882B31E5A979C93A545 /* CustomDockCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDockCoordinator.swift; sourceTree = "<group>"; };
+		F21765C791EE485384A8419BB4ACC271 /* CustomDocksSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDocksSettingsView.swift; sourceTree = "<group>"; };
 		7FD74FFBE5824DE3919DDDD461D39E30 /* KeyCaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCaptureButton.swift; sourceTree = "<group>"; };
 		800055332EFC0DDF005CAB72 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		81BFDF0C2EE815FD00D56F65 /* CompactModeWarningBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactModeWarningBanner.swift; sourceTree = "<group>"; };
@@ -547,6 +555,16 @@
 				B2C3D4E5F67890123456789A /* ActiveAppIndicatorWindow.swift */,
 			);
 			path = ActiveAppIndicator;
+			sourceTree = "<group>";
+		};
+		D1B86486B9D744F08A912953D45BAF9E /* CustomDocks */ = {
+			isa = PBXGroup;
+			children = (
+				5C1335AF6C3C4C9BA9BEF303476106C6 /* CustomDockConfig.swift */,
+				2E14A1D9D4404B228FB5933C84C82695 /* CustomDockView.swift */,
+				F981B5D58AB54882B31E5A979C93A545 /* CustomDockCoordinator.swift */,
+			);
+			path = CustomDocks;
 			sourceTree = "<group>";
 		};
 		27DC8C162CFA4DA7005F8F31 /* Formatters */ = {
@@ -782,6 +800,7 @@
 			isa = PBXGroup;
 			children = (
 				205C45E5266848C9B4F622AA /* ActiveAppIndicator */,
+				D1B86486B9D744F08A912953D45BAF9E /* CustomDocks */,
 				B9D4DE2A3A39438AB1F2C1F4E515D038 /* Media */,
 				BB5D35532ED4C4CC006ECE15 /* DebugLogger.swift */,
 				7A1C2E9B4D5F4A0B8C3D2E1F /* EventTapThread.swift */,
@@ -1015,6 +1034,7 @@
 				BB2884FE2E81AFCB0048A09B /* Shared Components */,
 				537A0B44DC3B49A0B2A8660ED001D38D /* Search */,
 				7D264F468F734971AE701690 /* ActiveAppIndicatorSettingsView.swift */,
+				F21765C791EE485384A8419BB4ACC271 /* CustomDocksSettingsView.swift */,
 				BB1CBD572C1BA800003969BC /* MainSettingsView.swift */,
 				970D8CBC36D84F14B8E6E83487035CFB /* DockPreviewsSettingsView.swift */,
 				2361530A12344D0090E22EC428DC77D0 /* WindowSwitcherBehaviorSettingsView.swift */,
@@ -1215,6 +1235,10 @@
 				F3A2B8C1D5E6489AAB123456 /* ActiveAppIndicatorPositioning.swift in Sources */,
 				A1B2C3D4E5F6789012345678 /* ActiveAppIndicatorWindow.swift in Sources */,
 				83E26DB067D2426086683147 /* ActiveAppIndicatorSettingsView.swift in Sources */,
+				9D5F7135BD6A4192B96B17047384069B /* CustomDockConfig.swift in Sources */,
+				61FA43342F18436CB82290AC7C849275 /* CustomDockView.swift in Sources */,
+				D991A3B3B0044E35A84CC83A91B66A80 /* CustomDockCoordinator.swift in Sources */,
+				9EEAF6B71DAE404E97E2E5469F60FF45 /* CustomDocksSettingsView.swift in Sources */,
 				0531F8D22C3CC04600327808 /* AppearanceSettingsView.swift in Sources */,
 				BB5D35542ED4C4CC006ECE15 /* DebugLogger.swift in Sources */,
 				5B2D3F0C6E7A4B1C9D4E3F20 /* EventTapThread.swift in Sources */,
