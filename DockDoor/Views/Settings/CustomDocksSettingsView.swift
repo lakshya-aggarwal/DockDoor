@@ -46,6 +46,11 @@ private struct CustomDockEditor: View {
                 }
             })
 
+            searchable("customDocks.autoHide", Toggle(isOn: $dock.autoHide) {
+                Text("Auto-hide")
+            }
+            .settingsAnnotation("Hide this dock on the desktop until the pointer touches the screen edge it sits on. Docks always hide this way over full-screen apps."))
+
             ForEach(dock.bundleIDs, id: \.self) { bundleID in
                 HStack {
                     Text(Self.displayName(for: bundleID))

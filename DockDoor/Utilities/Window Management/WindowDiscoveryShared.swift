@@ -474,6 +474,7 @@ enum WindowSpaces {
     private struct ManagedDisplay {
         let identifier: String
         let currentSpaceID: CGSSpaceID?
+        let currentSpaceIsFullScreen: Bool
         let spaceIDs: Set<CGSSpaceID>
     }
 
@@ -500,6 +501,7 @@ enum WindowSpaces {
             return ManagedDisplay(
                 identifier: identifier,
                 currentSpaceID: spaceID(from: currentSpace),
+                currentSpaceIsFullScreen: (currentSpace?["type"] as? NSNumber)?.intValue == 4,
                 spaceIDs: Set(spaces.compactMap { spaceID(from: $0) })
             )
         }
@@ -564,6 +566,14 @@ enum WindowSpaces {
         }
 
         return displays.first?.currentSpaceID
+    }
+
+    // With "Displays have separate Spaces" off, macOS reports a single "Main" display shared by every screen.
+    static func isFullScreenSpaceActive(on screen: NSScreen) -> Bool {
+        let displays = managedDisplays()
+        let identifiers = Set(displayIdentifiers(for: screen).map { $0.lowercased() })
+        let display = displays.first { identifiers.contains($0.identifier.lowercased()) } ?? (displays.count == 1 ? displays.first : nil)
+        return display?.currentSpaceIsFullScreen ?? false
     }
 
     @discardableResult

@@ -1655,6 +1655,15 @@ enum SettingsSearchCatalog {
             icon: "arrow.up.left.and.arrow.down.right"
         ),
         SettingsSearchItem(
+            id: "customDocks.autoHide",
+            title: String(localized: "Auto-hide"),
+            description: String(localized: "Hide this dock on the desktop until the pointer touches the screen edge it sits on. Docks always hide this way over full-screen apps."),
+            keywords: ["custom", "dock", "hide", "reveal", "edge", "autohide"],
+            tab: "CustomDocks",
+            section: String(localized: "Custom Docks"),
+            icon: "eye.slash"
+        ),
+        SettingsSearchItem(
             id: "customDocks.apps",
             title: String(localized: "Add App…"),
             keywords: ["custom", "dock", "app", "applications", "add", "drag"],
