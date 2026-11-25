@@ -1,4 +1,5 @@
 import Cocoa
+import Defaults
 import SwiftUI
 
 final class CustomDockModel: ObservableObject {
@@ -13,10 +14,19 @@ final class CustomDockModel: ObservableObject {
         self.config = config
         self.running = running
     }
+
+    // Saving to Defaults lets the coordinator's observer refit the panel, the same path as edits made in settings.
+    func insertApps(_ urls: [URL], at index: Int) {
+        var docks = Defaults[.customDocks]
+        guard let i = docks.firstIndex(where: { $0.id == config.id }) else { return }
+        docks[i].insertApps(urls, at: index)
+        Defaults[.customDocks] = docks
+    }
 }
 
 struct CustomDockView: View {
     @ObservedObject var model: CustomDockModel
+    @State private var isDropTargeted = false
 
     var body: some View {
         let layout = model.config.isVertical
@@ -35,6 +45,12 @@ struct CustomDockView: View {
         }
         .padding(10)
         .dockStyle(backgroundAppearance: .resolve(), cornerRadius: 18, outerPadding: 0)
+        .overlay {
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .strokeBorder(Color.accentColor, lineWidth: 2)
+                .opacity(isDropTargeted ? 1 : 0)
+        }
+        .onDrop(of: [.fileURL], isTargeted: $isDropTargeted, perform: drop)
         .fixedSize()
         .offset(model.isShown ? .zero : model.hiddenOffset)
         // Like the system Dock, an edge dock slides out solid; a floating one also fades so it isn't cut off mid-screen.
@@ -48,6 +64,25 @@ struct CustomDockView: View {
                 .onChanged { _ in model.panel?.dragChanged() }
                 .onEnded { _ in model.panel?.dragEnded() }
         )
+    }
+
+    // Icons sit at 10pt padding with 10pt spacing, so the nearest gap to the drop point is the insertion index.
+    private func drop(_ providers: [NSItemProvider], at location: CGPoint) -> Bool {
+        let position = model.config.isVertical ? location.y : location.x
+        let index = Int(((position - 5) / (model.config.iconSize + 10)).rounded())
+        var urls = [URL?](repeating: nil, count: providers.count)
+        let group = DispatchGroup()
+        for (i, provider) in providers.enumerated() {
+            group.enter()
+            _ = provider.loadObject(ofClass: URL.self) { url, _ in
+                DispatchQueue.main.async {
+                    urls[i] = url
+                    group.leave()
+                }
+            }
+        }
+        group.notify(queue: .main) { model.insertApps(urls.compactMap { $0 }, at: index) }
+        return true
     }
 }
 

@@ -93,14 +93,11 @@ private struct CustomDockEditor: View {
         panel.allowsMultipleSelection = true
         panel.directoryURL = URL(fileURLWithPath: "/Applications")
         guard panel.runModal() == .OK else { return }
-        panel.urls.forEach(add)
+        dock.insertApps(panel.urls, at: dock.bundleIDs.count)
     }
 
     private func add(_ url: URL) {
-        guard url.pathExtension == "app",
-              let bundleID = Bundle(url: url)?.bundleIdentifier,
-              !dock.bundleIDs.contains(bundleID) else { return }
-        dock.bundleIDs.append(bundleID)
+        dock.insertApps([url], at: dock.bundleIDs.count)
     }
 
     private static func displayName(for bundleID: String) -> String {

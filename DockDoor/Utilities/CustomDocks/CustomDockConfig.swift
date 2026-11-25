@@ -14,6 +14,16 @@ struct CustomDockConfig: Codable, Identifiable, Equatable, Defaults.Serializable
 }
 
 extension CustomDockConfig {
+    mutating func insertApps(_ urls: [URL], at index: Int) {
+        var added: [String] = []
+        for url in urls {
+            guard url.pathExtension == "app", let id = Bundle(url: url)?.bundleIdentifier,
+                  !bundleIDs.contains(id), !added.contains(id) else { continue }
+            added.append(id)
+        }
+        bundleIDs.insert(contentsOf: added, at: min(max(index, 0), bundleIDs.count))
+    }
+
     // Synthesized decoding rejects docks saved before a field existed, so every field falls back to its default.
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
